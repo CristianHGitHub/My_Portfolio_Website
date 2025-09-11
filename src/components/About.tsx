@@ -198,25 +198,24 @@ const About: React.FC = () => {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <p>
-                I'm a passionate <Highlight>full-stack developer</Highlight>{" "}
-                with a love for creating innovative digital solutions. With
-                expertise in modern web technologies, I specialize in building
-                scalable applications that deliver exceptional user experiences.
-              </p>
+                <p>
+                  I'm a passionate <Highlight>full-stack developer</Highlight>{" "}
+                  specializing in data science and machine learning. With expertise 
+                  in modern web technologies, I build scalable applications that deliver 
+                  exceptional user experiences while leveraging data-driven insights.
+                </p>
 
-              <p>
-                My journey in software development began with curiosity and has
-                evolved into a deep understanding of both frontend and backend
-                technologies. I enjoy tackling complex challenges and turning
-                ideas into reality through clean, efficient code.
-              </p>
+                <p>
+                  My journey spans full-stack development, data science, and machine learning. 
+                  I enjoy tackling complex challenges and turning ideas into reality through 
+                  clean code, innovative algorithms, and intelligent solutions.
+                </p>
 
-              <p>
-                When I'm not coding, you can find me exploring new technologies,
-                contributing to open-source projects, or sharing knowledge with
-                the developer community.
-              </p>
+                <p>
+                  When I'm not coding, you can find me exploring new ML algorithms, 
+                  analyzing datasets, contributing to open-source projects, or sharing 
+                  knowledge with the developer and data science community.
+                </p>
             </motion.div>
 
             <StatsGrid>

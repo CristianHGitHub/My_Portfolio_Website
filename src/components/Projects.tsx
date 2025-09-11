@@ -197,45 +197,45 @@ const Projects: React.FC = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
+      title: "ML-Powered E-Commerce Platform",
       description:
-        "A full-stack e-commerce solution built with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.",
+        "A full-stack e-commerce solution with machine learning recommendations, built with React, Node.js, and Python. Features include personalized product suggestions and predictive analytics.",
       image: "🛒",
-      tech: ["React", "Node.js", "PostgreSQL", "Stripe", "AWS"],
+      tech: ["React", "Node.js", "Python", "TensorFlow", "PostgreSQL", "AWS"],
       category: "Full Stack",
       liveUrl: "#",
       githubUrl: "#",
     },
     {
       id: 2,
-      title: "Task Management App",
+      title: "Data Science Dashboard",
       description:
-        "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-      image: "📋",
-      tech: ["Vue.js", "Express", "MongoDB", "Socket.io", "Docker"],
-      category: "Full Stack",
+        "An interactive dashboard for data analysis and visualization with real-time insights, predictive modeling, and automated reporting features.",
+      image: "📊",
+      tech: ["Python", "Pandas", "Scikit-learn", "D3.js", "Flask", "MongoDB"],
+      category: "Data Science",
       liveUrl: "#",
       githubUrl: "#",
     },
     {
       id: 3,
-      title: "Weather Dashboard",
+      title: "Weather Prediction ML Model",
       description:
-        "A responsive weather dashboard with location-based forecasts, interactive maps, and detailed weather analytics.",
+        "Machine learning model for weather forecasting with interactive dashboard, featuring neural networks and time series analysis.",
       image: "🌤️",
-      tech: ["React", "TypeScript", "Chart.js", "OpenWeather API"],
-      category: "Frontend",
+      tech: ["Python", "TensorFlow", "Pandas", "React", "Chart.js", "OpenWeather API"],
+      category: "Machine Learning",
       liveUrl: "#",
       githubUrl: "#",
     },
     {
       id: 4,
-      title: "REST API Service",
+      title: "Smart Task Management AI",
       description:
-        "A scalable REST API built with Python Django, featuring authentication, rate limiting, and comprehensive documentation.",
-      image: "🔧",
-      tech: ["Python", "Django", "PostgreSQL", "Redis", "Swagger"],
-      category: "Backend",
+        "AI-powered task management application with intelligent prioritization, deadline prediction, and automated scheduling using machine learning.",
+      image: "📋",
+      tech: ["Python", "Scikit-learn", "Vue.js", "Express", "MongoDB", "Docker"],
+      category: "Machine Learning",
       liveUrl: "#",
       githubUrl: "#",
     },
@@ -243,7 +243,7 @@ const Projects: React.FC = () => {
       id: 5,
       title: "Portfolio Website",
       description:
-        "A modern, responsive portfolio website with smooth animations, dark theme, and optimized performance.",
+        "A modern, responsive portfolio website with smooth animations, dark theme, and optimized performance showcasing full-stack and data science skills.",
       image: "💼",
       tech: ["React", "TypeScript", "Framer Motion", "Styled Components"],
       category: "Frontend",
@@ -252,18 +252,18 @@ const Projects: React.FC = () => {
     },
     {
       id: 6,
-      title: "Chat Application",
+      title: "Real-time Analytics Platform",
       description:
-        "Real-time chat application with private messaging, group chats, and file sharing capabilities.",
-      image: "💬",
-      tech: ["React", "Node.js", "Socket.io", "MongoDB", "AWS S3"],
-      category: "Full Stack",
+        "Real-time data processing and analytics platform with streaming data, machine learning insights, and interactive visualizations.",
+      image: "📈",
+      tech: ["Python", "Apache Kafka", "React", "Node.js", "MongoDB", "AWS"],
+      category: "Data Science",
       liveUrl: "#",
       githubUrl: "#",
     },
   ];
 
-  const categories = ["All", "Frontend", "Backend", "Full Stack"];
+  const categories = ["All", "Frontend", "Backend", "Full Stack", "Data Science", "Machine Learning"];
 
   const filteredProjects =
     activeFilter === "All"

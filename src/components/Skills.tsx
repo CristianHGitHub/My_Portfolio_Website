@@ -174,6 +174,20 @@ const Skills: React.FC = () => {
       ],
     },
     {
+      title: "Data Science & ML",
+      icon: "🤖",
+      skills: [
+        "Python",
+        "Pandas",
+        "NumPy",
+        "Scikit-learn",
+        "TensorFlow",
+        "PyTorch",
+        "Jupyter",
+        "Matplotlib",
+      ],
+    },
+    {
       title: "Database",
       icon: "🗄️",
       skills: [
@@ -204,12 +218,12 @@ const Skills: React.FC = () => {
   const progressSkills = [
     { name: "JavaScript/TypeScript", percentage: 95 },
     { name: "React/Next.js", percentage: 90 },
+    { name: "Python/Data Science", percentage: 88 },
+    { name: "Machine Learning", percentage: 75 },
     { name: "Node.js/Express", percentage: 85 },
-    { name: "Python/Django", percentage: 80 },
     { name: "PostgreSQL/MongoDB", percentage: 85 },
     { name: "AWS/Cloud Services", percentage: 75 },
     { name: "Docker/DevOps", percentage: 70 },
-    { name: "UI/UX Design", percentage: 65 },
   ];
 
   return (

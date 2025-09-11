@@ -168,10 +168,10 @@ const Hero: React.FC = () => {
   const texts = useMemo(
     () => [
       "Full-Stack Developer",
-      "React Specialist",
-      "Node.js Expert",
+      "Data Science Specialist",
+      "Machine Learning Enthusiast",
+      "React & Node.js Expert",
       "Problem Solver",
-      "Tech Enthusiast",
     ],
     []
   );
@@ -230,15 +230,15 @@ const Hero: React.FC = () => {
           </TypingText>
         </TypingContainer>
 
-        <Description
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          I craft exceptional digital experiences through clean code, innovative
-          solutions, and a passion for turning complex problems into elegant
-          software.
-        </Description>
+          <Description
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            I specialize in full-stack development, data science, and machine learning. 
+            I craft exceptional digital experiences through clean code, innovative solutions, 
+            and a passion for turning complex problems into elegant software.
+          </Description>
 
         <ButtonGroup
           initial={{ opacity: 0, y: 20 }}
@@ -254,7 +254,7 @@ const Hero: React.FC = () => {
           </Button>
           <Button
             href="/resume.pdf"
-            download
+            download="Cristian-Hernandez-Resume.pdf"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
