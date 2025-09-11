@@ -1,0 +1,298 @@
+import React from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+
+const SkillsSection = styled.section`
+  padding: ${({ theme }) => theme.spacing.xxl}
+    ${({ theme }) => theme.spacing.md};
+  background: ${({ theme }) => theme.colors.primary};
+  position: relative;
+`;
+
+const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const SectionTitle = styled(motion.h2)`
+  text-align: center;
+  margin-bottom: ${({ theme }) => theme.spacing.xxl};
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      ${({ theme }) => theme.colors.accentCyan},
+      ${({ theme }) => theme.colors.accentPurple}
+    );
+    border-radius: 2px;
+  }
+`;
+
+const SkillsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: ${({ theme }) => theme.spacing.xl};
+  margin-bottom: ${({ theme }) => theme.spacing.xxl};
+`;
+
+const SkillCategory = styled(motion.div)`
+  background: ${({ theme }) => theme.colors.secondary};
+  padding: ${({ theme }) => theme.spacing.xl};
+  border-radius: 16px;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  transition: all ${({ theme }) => theme.animations.normal} ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: ${({ theme }) => theme.colors.accentCyan};
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+  }
+`;
+
+const CategoryTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.primary};
+  font-size: 1.5rem;
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  color: ${({ theme }) => theme.colors.accentCyan};
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
+`;
+
+const SkillsList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.spacing.sm};
+`;
+
+const SkillItem = styled(motion.div)`
+  background: ${({ theme }) => theme.colors.accent};
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
+  border-radius: 8px;
+  font-family: ${({ theme }) => theme.fonts.primary};
+  font-size: 0.9rem;
+  color: ${({ theme }) => theme.colors.text};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  transition: all ${({ theme }) => theme.animations.fast} ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.accentCyan};
+    color: ${({ theme }) => theme.colors.primary};
+    transform: scale(1.05);
+  }
+`;
+
+const ProgressSection = styled.div`
+  margin-top: ${({ theme }) => theme.spacing.xxl};
+`;
+
+const ProgressTitle = styled(motion.h3)`
+  text-align: center;
+  margin-bottom: ${({ theme }) => theme.spacing.xl};
+  color: ${({ theme }) => theme.colors.accentCyan};
+`;
+
+const ProgressGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: ${({ theme }) => theme.spacing.lg};
+`;
+
+const ProgressItem = styled(motion.div)`
+  background: ${({ theme }) => theme.colors.secondary};
+  padding: ${({ theme }) => theme.spacing.lg};
+  border-radius: 12px;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+`;
+
+const ProgressLabel = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  font-family: ${({ theme }) => theme.fonts.primary};
+  font-weight: 600;
+`;
+
+const ProgressBar = styled.div`
+  height: 8px;
+  background: ${({ theme }) => theme.colors.accent};
+  border-radius: 4px;
+  overflow: hidden;
+`;
+
+const ProgressFill = styled(motion.div)<{ percentage: number }>`
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    ${({ theme }) => theme.colors.accentCyan},
+    ${({ theme }) => theme.colors.accentPurple}
+  );
+  border-radius: 4px;
+`;
+
+const Skills: React.FC = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const skillCategories = [
+    {
+      title: "Frontend",
+      icon: "💻",
+      skills: [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "Vue.js",
+        "HTML5",
+        "CSS3",
+        "Sass",
+        "Tailwind CSS",
+      ],
+    },
+    {
+      title: "Backend",
+      icon: "⚙️",
+      skills: [
+        "Node.js",
+        "Express",
+        "Python",
+        "Django",
+        "PHP",
+        "Laravel",
+        "REST APIs",
+        "GraphQL",
+      ],
+    },
+    {
+      title: "Database",
+      icon: "🗄️",
+      skills: [
+        "PostgreSQL",
+        "MongoDB",
+        "MySQL",
+        "Redis",
+        "Firebase",
+        "Supabase",
+      ],
+    },
+    {
+      title: "Tools & DevOps",
+      icon: "🛠️",
+      skills: [
+        "Git",
+        "Docker",
+        "AWS",
+        "Vercel",
+        "Netlify",
+        "CI/CD",
+        "Linux",
+        "Nginx",
+      ],
+    },
+  ];
+
+  const progressSkills = [
+    { name: "JavaScript/TypeScript", percentage: 95 },
+    { name: "React/Next.js", percentage: 90 },
+    { name: "Node.js/Express", percentage: 85 },
+    { name: "Python/Django", percentage: 80 },
+    { name: "PostgreSQL/MongoDB", percentage: 85 },
+    { name: "AWS/Cloud Services", percentage: 75 },
+    { name: "Docker/DevOps", percentage: 70 },
+    { name: "UI/UX Design", percentage: 65 },
+  ];
+
+  return (
+    <SkillsSection id="skills" ref={ref}>
+      <Container>
+        <SectionTitle
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          Skills & Technologies
+        </SectionTitle>
+
+        <SkillsGrid>
+          {skillCategories.map((category, categoryIndex) => (
+            <SkillCategory
+              key={category.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <CategoryTitle>
+                <span>{category.icon}</span>
+                {category.title}
+              </CategoryTitle>
+              <SkillsList>
+                {category.skills.map((skill, skillIndex) => (
+                  <SkillItem
+                    key={skill}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{
+                      duration: 0.4,
+                      delay: categoryIndex * 0.1 + skillIndex * 0.05,
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {skill}
+                  </SkillItem>
+                ))}
+              </SkillsList>
+            </SkillCategory>
+          ))}
+        </SkillsGrid>
+
+        <ProgressSection>
+          <ProgressTitle
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            Proficiency Levels
+          </ProgressTitle>
+
+          <ProgressGrid>
+            {progressSkills.map((skill, index) => (
+              <ProgressItem
+                key={skill.name}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+              >
+                <ProgressLabel>
+                  <span>{skill.name}</span>
+                  <span>{skill.percentage}%</span>
+                </ProgressLabel>
+                <ProgressBar>
+                  <ProgressFill
+                    percentage={skill.percentage}
+                    initial={{ width: 0 }}
+                    animate={isInView ? { width: `${skill.percentage}%` } : {}}
+                    transition={{ duration: 1, delay: 0.6 + index * 0.1 }}
+                  />
+                </ProgressBar>
+              </ProgressItem>
+            ))}
+          </ProgressGrid>
+        </ProgressSection>
+      </Container>
+    </SkillsSection>
+  );
+};
+
+export default Skills;
