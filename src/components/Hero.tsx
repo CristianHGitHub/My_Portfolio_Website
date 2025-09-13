@@ -170,7 +170,7 @@ const Hero: React.FC = () => {
       "Full-Stack Developer",
       "Data Science Specialist",
       "Machine Learning Enthusiast",
-      "React & Node.js Expert",
+      "Software Engineer",
       "Problem Solver",
     ],
     []
@@ -230,15 +230,16 @@ const Hero: React.FC = () => {
           </TypingText>
         </TypingContainer>
 
-          <Description
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            I specialize in full-stack development, data science, and machine learning. 
-            I craft exceptional digital experiences through clean code, innovative solutions, 
-            and a passion for turning complex problems into elegant software.
-          </Description>
+        <Description
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          I specialize in full-stack development, data science, and machine
+          learning. I craft exceptional digital experiences through clean code,
+          innovative solutions, and a passion for turning complex problems into
+          elegant software.
+        </Description>
 
         <ButtonGroup
           initial={{ opacity: 0, y: 20 }}

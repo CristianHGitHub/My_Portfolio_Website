@@ -275,26 +275,22 @@ class WordPressApiService {
     }
   }
 
-  // Submit contact form (if you have a custom endpoint)
+  // Simple contact form submission - just logs the data
+  // In a real Fluent Forms setup, this would be handled by the form plugin
   async submitContactForm(formData: {
     name: string;
     email: string;
     subject: string;
     message: string;
   }): Promise<{ success: boolean; message: string }> {
-    try {
-      // This would typically be a custom endpoint or plugin
-      // For now, we'll simulate the submission
-      const response = await api.post("/contact-form", formData);
-      return response.data;
-    } catch (error) {
-      console.error("Error submitting contact form:", error);
-      // Fallback: simulate success for demo purposes
-      return {
-        success: true,
-        message: "Thank you for your message! I'll get back to you soon.",
-      };
-    }
+    // Simple implementation - just return success
+    // In production, this would integrate with Fluent Forms or similar
+    console.log("Contact form submission:", formData);
+
+    return {
+      success: true,
+      message: "Thank you for your message! I'll get back to you soon.",
+    };
   }
 }
 

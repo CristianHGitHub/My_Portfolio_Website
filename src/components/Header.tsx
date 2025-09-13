@@ -151,9 +151,21 @@ const Header: React.FC = () => {
   ];
 
   const socialLinks = [
-    { href: "https://github.com", icon: Github, label: "GitHub" },
-    { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
-    { href: "mailto:contact@devcristianh.com", icon: Mail, label: "Email" },
+    {
+      href: "https://github.com/CristianHGitHub",
+      icon: Github,
+      label: "GitHub",
+    },
+    {
+      href: "https://www.linkedin.com/in/cristian-hernandez-710a152b0/",
+      icon: Linkedin,
+      label: "LinkedIn",
+    },
+    {
+      href: "mailto:cristianhernandezr234@gmail.com",
+      icon: Mail,
+      label: "Email",
+    },
   ];
 
   return (

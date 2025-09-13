@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github, Eye } from "lucide-react";
+import { ExternalLink, Github, Eye, X } from "lucide-react";
 
 const ProjectsSection = styled.section`
   padding: ${({ theme }) => theme.spacing.xxl}
@@ -36,40 +36,6 @@ const SectionTitle = styled(motion.h2)`
       ${({ theme }) => theme.colors.accentPurple}
     );
     border-radius: 2px;
-  }
-`;
-
-const FilterButtons = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: ${({ theme }) => theme.spacing.sm};
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
-  flex-wrap: wrap;
-`;
-
-const FilterButton = styled(motion.button)<{ active: boolean }>`
-  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.lg};
-  border: 2px solid ${({ theme }) => theme.colors.accentCyan};
-  border-radius: 8px;
-  font-family: ${({ theme }) => theme.fonts.primary};
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all ${({ theme }) => theme.animations.fast} ease;
-
-  ${({ active, theme }) =>
-    active
-      ? `
-    background: ${theme.colors.accentCyan};
-    color: ${theme.colors.primary};
-  `
-      : `
-    background: transparent;
-    color: ${theme.colors.accentCyan};
-  `}
-
-  &:hover {
-    transform: translateY(-2px);
   }
 `;
 
@@ -189,86 +155,161 @@ const ProjectLinks = styled.div`
   gap: ${({ theme }) => theme.spacing.sm};
 `;
 
+// Modal Components
+const ModalOverlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: ${({ theme }) => theme.spacing.md};
+`;
+
+const ModalContent = styled(motion.div)`
+  background: ${({ theme }) => theme.colors.secondary};
+  border: 2px solid ${({ theme }) => theme.colors.accentCyan};
+  border-radius: 16px;
+  padding: ${({ theme }) => theme.spacing.xl};
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+`;
+
+const ModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+`;
+
+const ModalTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.primary};
+  font-size: 1.5rem;
+  color: ${({ theme }) => theme.colors.accentCyan};
+  margin: 0;
+`;
+
+const CloseButton = styled(motion.button)`
+  background: transparent;
+  border: none;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  cursor: pointer;
+  padding: ${({ theme }) => theme.spacing.sm};
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all ${({ theme }) => theme.animations.fast} ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.text};
+  }
+`;
+
+const ModalBody = styled.div`
+  color: ${({ theme }) => theme.colors.textSecondary};
+  line-height: 1.6;
+  font-size: 1rem;
+`;
+
+const ModalFooter = styled.div`
+  margin-top: ${({ theme }) => theme.spacing.lg};
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const ModalButton = styled(motion.button)`
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.colors.accentCyan},
+    ${({ theme }) => theme.colors.accentPurple}
+  );
+  color: ${({ theme }) => theme.colors.primary};
+  border: none;
+  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
+  border-radius: 8px;
+  font-family: ${({ theme }) => theme.fonts.primary};
+  font-weight: 600;
+  cursor: pointer;
+  transition: all ${({ theme }) => theme.animations.fast} ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+  }
+`;
+
 const Projects: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState<"robot" | "incollege" | null>(
+    null
+  );
+
+  const handleGitHubClick = (project: any, e: React.MouseEvent) => {
+    if (project.title === "Autonomous Robot Navigation System") {
+      e.preventDefault();
+      setModalType("robot");
+      setShowModal(true);
+    }
+  };
+
+  const handleViewProjectClick = (project: any, e: React.MouseEvent) => {
+    if (project.title === "InCollege Social Networking Platform") {
+      e.preventDefault();
+      setModalType("incollege");
+      setShowModal(true);
+    }
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setModalType(null);
+  };
 
   const projects = [
     {
       id: 1,
-      title: "ML-Powered E-Commerce Platform",
+      title: "Financial Tracker",
       description:
-        "A full-stack e-commerce solution with machine learning recommendations, built with React, Node.js, and Python. Features include personalized product suggestions and predictive analytics.",
-      image: "🛒",
-      tech: ["React", "Node.js", "Python", "TensorFlow", "PostgreSQL", "AWS"],
+        "Built and deployed a secure full-stack financial tracking platform with user authentication and persistent data storage, enabling real-time expense monitoring. Leveraged AI-powered insights to analyze spending habits and deliver personalized recommendations, helping users cut expenses by 30% through data-driven guidance.",
+      image: "💰",
+      tech: ["Node.js", "TypeScript", "React", "PostgreSQL"],
       category: "Full Stack",
-      liveUrl: "#",
-      githubUrl: "#",
+      liveUrl: "https://financial-tracker-ten-theta.vercel.app/",
+      githubUrl: "https://github.com/CristianHGitHub/Financial-Tracker",
     },
     {
       id: 2,
-      title: "Data Science Dashboard",
+      title: "InCollege Social Networking Platform",
       description:
-        "An interactive dashboard for data analysis and visualization with real-time insights, predictive modeling, and automated reporting features.",
-      image: "📊",
-      tech: ["Python", "Pandas", "Scikit-learn", "D3.js", "Flask", "MongoDB"],
-      category: "Data Science",
+        "Collaborated in a 5-person Agile Scrum team using Jira and Git branching strategies to deliver a modular COBOL-based social networking platform with authentication, account management, and interactive navigation features across 3 sprints. Streamlined development by designing reusable subprogram architecture and automating builds with Make, improving maintainability and workflow efficiency by 60%.",
+      image: "🎓",
+      tech: ["COBOL", "Agile", "Git"],
+      category: "Backend",
       liveUrl: "#",
-      githubUrl: "#",
+      githubUrl: "https://github.com/CristianHGitHub/Group-Project-InCollege",
     },
     {
       id: 3,
-      title: "Weather Prediction ML Model",
+      title: "Autonomous Robot Navigation System",
       description:
-        "Machine learning model for weather forecasting with interactive dashboard, featuring neural networks and time series analysis.",
-      image: "🌤️",
-      tech: ["Python", "TensorFlow", "Pandas", "React", "Chart.js", "OpenWeather API"],
+        "Developed a robot navigation model using navigation techniques and particle filters for localization, achieving a 98% collision-free rate in simulated environments. Integrated multiple sensor inputs using OOP principles for real-time navigation and obstacle detection.",
+      image: "🤖",
+      tech: ["Python", "Webots"],
       category: "Machine Learning",
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      id: 4,
-      title: "Smart Task Management AI",
-      description:
-        "AI-powered task management application with intelligent prioritization, deadline prediction, and automated scheduling using machine learning.",
-      image: "📋",
-      tech: ["Python", "Scikit-learn", "Vue.js", "Express", "MongoDB", "Docker"],
-      category: "Machine Learning",
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      id: 5,
-      title: "Portfolio Website",
-      description:
-        "A modern, responsive portfolio website with smooth animations, dark theme, and optimized performance showcasing full-stack and data science skills.",
-      image: "💼",
-      tech: ["React", "TypeScript", "Framer Motion", "Styled Components"],
-      category: "Frontend",
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      id: 6,
-      title: "Real-time Analytics Platform",
-      description:
-        "Real-time data processing and analytics platform with streaming data, machine learning insights, and interactive visualizations.",
-      image: "📈",
-      tech: ["Python", "Apache Kafka", "React", "Node.js", "MongoDB", "AWS"],
-      category: "Data Science",
-      liveUrl: "#",
+      liveUrl: "https://youtu.be/dvUPCyYr3IQ",
       githubUrl: "#",
     },
   ];
-
-  const categories = ["All", "Frontend", "Backend", "Full Stack", "Data Science", "Machine Learning"];
-
-  const filteredProjects =
-    activeFilter === "All"
-      ? projects
-      : projects.filter((project) => project.category === activeFilter);
 
   return (
     <ProjectsSection id="projects" ref={ref}>
@@ -281,23 +322,9 @@ const Projects: React.FC = () => {
           Featured Projects
         </SectionTitle>
 
-        <FilterButtons>
-          {categories.map((category) => (
-            <FilterButton
-              key={category}
-              active={activeFilter === category}
-              onClick={() => setActiveFilter(category)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {category}
-            </FilterButton>
-          ))}
-        </FilterButtons>
-
         <AnimatePresence mode="wait">
           <ProjectsGrid>
-            {filteredProjects.map((project, index) => (
+            {projects.map((project, index) => (
               <ProjectCard
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -328,6 +355,7 @@ const Projects: React.FC = () => {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => handleGitHubClick(project, e)}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
@@ -352,6 +380,7 @@ const Projects: React.FC = () => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => handleViewProjectClick(project, e)}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -362,6 +391,7 @@ const Projects: React.FC = () => {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => handleGitHubClick(project, e)}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -375,6 +405,105 @@ const Projects: React.FC = () => {
           </ProjectsGrid>
         </AnimatePresence>
       </Container>
+
+      {/* Private Repository Modal */}
+      <AnimatePresence>
+        {showModal && (
+          <ModalOverlay
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+          >
+            <ModalContent
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <ModalHeader>
+                <ModalTitle>
+                  {modalType === "robot"
+                    ? "🔒 Private Repository"
+                    : "🚧 Project in Development"}
+                </ModalTitle>
+                <CloseButton
+                  onClick={closeModal}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <X size={24} />
+                </CloseButton>
+              </ModalHeader>
+
+              <ModalBody>
+                {modalType === "robot" ? (
+                  <>
+                    <p>
+                      Sorry, this project repository is private and cannot be
+                      accessed publicly. The professor requested that students
+                      maintain this project private to prevent future students
+                      from accessing complete solutions, ensuring academic
+                      integrity and encouraging original problem-solving
+                      approaches.
+                    </p>
+                    <p>
+                      However, you can view the project demonstration video
+                      through the
+                      <strong style={{ color: "#00d4ff" }}>
+                        {" "}
+                        "Live Demo"{" "}
+                      </strong>
+                      link above to see the robot navigation system in action!
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      Sorry, the visual aspect of this project is still in
+                      progress. The InCollege Social Networking Platform was
+                      originally designed as a backend-focused project,
+                      emphasizing core functionality and system architecture
+                      rather than frontend presentation.
+                    </p>
+                    <p>
+                      This project demonstrates strong backend development
+                      skills, including
+                      <strong style={{ color: "#00d4ff" }}>
+                        {" "}
+                        COBOL programming
+                      </strong>
+                      ,
+                      <strong style={{ color: "#00d4ff" }}>
+                        {" "}
+                        Agile methodologies
+                      </strong>
+                      , and
+                      <strong style={{ color: "#00d4ff" }}>
+                        {" "}
+                        collaborative development
+                      </strong>{" "}
+                      practices. You can explore the source code through the
+                      GitHub repository.
+                    </p>
+                  </>
+                )}
+              </ModalBody>
+
+              <ModalFooter>
+                <ModalButton
+                  onClick={closeModal}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Understood
+                </ModalButton>
+              </ModalFooter>
+            </ModalContent>
+          </ModalOverlay>
+        )}
+      </AnimatePresence>
     </ProjectsSection>
   );
 };

@@ -3,15 +3,8 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  Github,
-  Linkedin,
-  Twitter,
-} from "lucide-react";
+import { Mail, Phone, MapPin, Send, Github, Linkedin } from "lucide-react";
+import wordpressApi from "../services/wordpressApi";
 
 const ContactSection = styled.section`
   padding: ${({ theme }) => theme.spacing.xxl}
@@ -266,27 +259,34 @@ const Contact: React.FC = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "contact@devcristianh.com",
-      href: "mailto:contact@devcristianh.com",
+      value: "cristianhernandezr234@gmail.com",
+      href: "mailto:cristianhernandezr234@gmail.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
+      value: "(813) 965-3146",
+      href: "tel:+18139653146",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
+      value: "Tampa, Florida",
       href: "#",
     },
   ];
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+    {
+      icon: Github,
+      href: "https://github.com/CristianHGitHub",
+      label: "GitHub",
+    },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/cristian-hernandez-710a152b0/",
+      label: "LinkedIn",
+    },
   ];
 
   const handleInputChange = (
@@ -302,15 +302,23 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      // Submit the form using the simplified API
+      const result = await wordpressApi.submitContactForm(formData);
 
-    // Reset form
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setIsSubmitting(false);
-
-    // Show success message (you can implement a toast notification here)
-    alert("Message sent successfully!");
+      if (result.success) {
+        // Reset form
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        alert(result.message);
+      } else {
+        alert("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      alert("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -341,7 +349,8 @@ const Contact: React.FC = () => {
             >
               I'm always interested in new opportunities and exciting projects.
               Whether you have a question, want to collaborate, or just want to
-              say hi, feel free to reach out!
+              say hi, feel free to reach out! I'm also open to hearing about job
+              opportunities that align with my skills and career goals.
             </ContactDescription>
 
             <ContactMethods>

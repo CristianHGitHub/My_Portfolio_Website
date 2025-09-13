@@ -42,3 +42,4 @@ export const theme = {
     slow: "0.5s",
   },
 };
+

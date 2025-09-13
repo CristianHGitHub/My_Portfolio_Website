@@ -46,6 +46,11 @@ const HeartIcon = styled(motion.span)`
   display: inline-block;
 `;
 
+const CoffeeIcon = styled(motion.span)`
+  color: ${({ theme }) => theme.colors.textSecondary};
+  display: inline-block;
+`;
+
 const Copyright = styled(motion.div)`
   color: ${({ theme }) => theme.colors.textSecondary};
   font-size: 0.9rem;
@@ -118,7 +123,20 @@ const Footer: React.FC = () => {
               >
                 <Heart size={16} fill="currentColor" />
               </HeartIcon>
-              and lots of coffee
+              and lots of
+              <CoffeeIcon
+                animate={{
+                  rotate: [-2, 2, -2, 2, 0],
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                ☕
+              </CoffeeIcon>
             </FooterText>
 
             <Copyright

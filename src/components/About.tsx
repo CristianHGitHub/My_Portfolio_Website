@@ -167,8 +167,8 @@ const About: React.FC = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const stats = [
-    { number: "3+", label: "Years Experience" },
-    { number: "50+", label: "Projects Completed" },
+    { number: "4+", label: "Years Experience" },
+    { number: "20+", label: "Projects Completed" },
     { number: "100%", label: "Client Satisfaction" },
     { number: "24/7", label: "Available Support" },
   ];
@@ -198,24 +198,27 @@ const About: React.FC = () => {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-                <p>
-                  I'm a passionate <Highlight>full-stack developer</Highlight>{" "}
-                  specializing in data science and machine learning. With expertise 
-                  in modern web technologies, I build scalable applications that deliver 
-                  exceptional user experiences while leveraging data-driven insights.
-                </p>
+              <p>
+                I'm a passionate <Highlight>full-stack developer</Highlight>{" "}
+                specializing in data science and machine learning. With
+                expertise in modern web technologies, I build scalable
+                applications that deliver exceptional user experiences while
+                leveraging data-driven insights.
+              </p>
 
-                <p>
-                  My journey spans full-stack development, data science, and machine learning. 
-                  I enjoy tackling complex challenges and turning ideas into reality through 
-                  clean code, innovative algorithms, and intelligent solutions.
-                </p>
+              <p>
+                My journey spans full-stack development, data science, and
+                machine learning. I enjoy tackling complex challenges and
+                turning ideas into reality through clean code, innovative
+                algorithms, and intelligent solutions.
+              </p>
 
-                <p>
-                  When I'm not coding, you can find me exploring new ML algorithms, 
-                  analyzing datasets, contributing to open-source projects, or sharing 
-                  knowledge with the developer and data science community.
-                </p>
+              <p>
+                When I'm not coding, you can find me exploring new ML
+                algorithms, analyzing datasets, contributing to open-source
+                projects, or sharing knowledge with the developer and data
+                science community.
+              </p>
             </motion.div>
 
             <StatsGrid>
