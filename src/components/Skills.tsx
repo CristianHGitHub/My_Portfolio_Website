@@ -98,16 +98,19 @@ const Skills: React.FC = () => {
 
   const skillCategories = [
     {
+      title: "Languages",
+      icon: "💬",
+      skills: ["Python", "C/C++", "JavaScript", "Java", "C#", "COBOL"],
+    },
+    {
       title: "Frontend",
       icon: "💻",
       skills: [
         "React",
         "TypeScript",
-        "Next.js",
-        "Vue.js",
         "HTML5",
         "CSS3",
-        "Sass",
+        "JavaScript",
         "Tailwind CSS",
       ],
     },
@@ -116,13 +119,11 @@ const Skills: React.FC = () => {
       icon: "⚙️",
       skills: [
         "Node.js",
-        "Express",
         "Python",
-        "Django",
-        "PHP",
-        "Laravel",
+        "Express",
         "REST APIs",
-        "GraphQL",
+        "PHP",
+        "Authentication",
       ],
     },
     {
@@ -133,8 +134,6 @@ const Skills: React.FC = () => {
         "Pandas",
         "NumPy",
         "Scikit-learn",
-        "TensorFlow",
-        "PyTorch",
         "Jupyter",
         "Matplotlib",
       ],
@@ -144,26 +143,17 @@ const Skills: React.FC = () => {
       icon: "🗄️",
       skills: [
         "PostgreSQL",
-        "MongoDB",
         "MySQL",
-        "Redis",
+        "MongoDB",
+        "SQLite",
+        "Oracle SQL",
         "Firebase",
-        "Supabase",
       ],
     },
     {
       title: "Tools & DevOps",
       icon: "🛠️",
-      skills: [
-        "Git",
-        "Docker",
-        "AWS",
-        "Vercel",
-        "Netlify",
-        "CI/CD",
-        "Linux",
-        "Nginx",
-      ],
+      skills: ["Git", "Agile", "Docker", "AWS", "Vercel", "Linux"],
     },
   ];
 
