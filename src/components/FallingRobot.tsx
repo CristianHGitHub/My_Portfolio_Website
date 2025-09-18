@@ -25,7 +25,7 @@ const Robot = styled(motion.div)`
   justify-content: center;
   box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
   position: relative;
-  
+
   &::before {
     content: "";
     position: absolute;
@@ -42,10 +42,17 @@ const Robot = styled(motion.div)`
     opacity: 0.3;
     animation: pulse 2s infinite;
   }
-  
+
   @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 0.3; }
-    50% { transform: scale(1.1); opacity: 0.6; }
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.3;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.6;
+    }
   }
 `;
 
@@ -74,7 +81,7 @@ const SpeechBubble = styled(motion.div)`
   font-size: 0.8rem;
   color: ${({ theme }) => theme.colors.text};
   white-space: nowrap;
-  
+
   &::after {
     content: "";
     position: absolute;
@@ -125,7 +132,9 @@ const FallingRobot: React.FC = () => {
     // Show speech bubble after robot appears
     const speechTimer = setTimeout(() => {
       setShowSpeech(true);
-      setSpeechText(speechMessages[Math.floor(Math.random() * speechMessages.length)]);
+      setSpeechText(
+        speechMessages[Math.floor(Math.random() * speechMessages.length)]
+      );
     }, 4000);
 
     // Hide speech after 3 seconds
@@ -140,7 +149,9 @@ const FallingRobot: React.FC = () => {
         setIsVisible(true);
         setTimeout(() => {
           setShowSpeech(true);
-          setSpeechText(speechMessages[Math.floor(Math.random() * speechMessages.length)]);
+          setSpeechText(
+            speechMessages[Math.floor(Math.random() * speechMessages.length)]
+          );
           setTimeout(() => setShowSpeech(false), 3000);
         }, 2000);
       }, 1000);
@@ -154,14 +165,14 @@ const FallingRobot: React.FC = () => {
     };
   }, []);
 
-  const sparkles = Array.from({ length: 8 }, (_, i) => ({
+  const sparkles = Array.from({ length: 4 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
     delay: Math.random() * 2,
   }));
 
-  const hearts = Array.from({ length: 3 }, (_, i) => ({
+  const hearts = Array.from({ length: 2 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
@@ -195,7 +206,7 @@ const FallingRobot: React.FC = () => {
             }}
           >
             <RobotIcon size={30} />
-            
+
             {/* Sparkles around robot */}
             {sparkles.map((sparkle) => (
               <Sparkle

@@ -322,88 +322,86 @@ const Projects: React.FC = () => {
           Featured Projects
         </SectionTitle>
 
-        <AnimatePresence mode="wait">
-          <ProjectsGrid>
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <ProjectImage>
-                  <ProjectImagePlaceholder>
-                    {project.image}
-                  </ProjectImagePlaceholder>
-                  <ProjectOverlay
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
+        <ProjectsGrid>
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <ProjectImage>
+                <ProjectImagePlaceholder>
+                  {project.image}
+                </ProjectImagePlaceholder>
+                <ProjectOverlay
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ProjectButton
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                   >
-                    <ProjectButton
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <Eye size={16} />
-                      Live Demo
-                    </ProjectButton>
-                    <ProjectButton
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => handleGitHubClick(project, e)}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <Github size={16} />
-                      Code
-                    </ProjectButton>
-                  </ProjectOverlay>
-                </ProjectImage>
+                    <Eye size={16} />
+                    Live Demo
+                  </ProjectButton>
+                  <ProjectButton
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => handleGitHubClick(project, e)}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <Github size={16} />
+                    Code
+                  </ProjectButton>
+                </ProjectOverlay>
+              </ProjectImage>
 
-                <ProjectContent>
-                  <ProjectTitle>{project.title}</ProjectTitle>
-                  <ProjectDescription>{project.description}</ProjectDescription>
+              <ProjectContent>
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <ProjectDescription>{project.description}</ProjectDescription>
 
-                  <ProjectTech>
-                    {project.tech.map((tech) => (
-                      <TechTag key={tech}>{tech}</TechTag>
-                    ))}
-                  </ProjectTech>
+                <ProjectTech>
+                  {project.tech.map((tech) => (
+                    <TechTag key={tech}>{tech}</TechTag>
+                  ))}
+                </ProjectTech>
 
-                  <ProjectLinks>
-                    <ProjectButton
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => handleViewProjectClick(project, e)}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <ExternalLink size={16} />
-                      View Project
-                    </ProjectButton>
-                    <ProjectButton
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => handleGitHubClick(project, e)}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Github size={16} />
-                      GitHub
-                    </ProjectButton>
-                  </ProjectLinks>
-                </ProjectContent>
-              </ProjectCard>
-            ))}
-          </ProjectsGrid>
-        </AnimatePresence>
+                <ProjectLinks>
+                  <ProjectButton
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => handleViewProjectClick(project, e)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <ExternalLink size={16} />
+                    View Project
+                  </ProjectButton>
+                  <ProjectButton
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => handleGitHubClick(project, e)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Github size={16} />
+                    GitHub
+                  </ProjectButton>
+                </ProjectLinks>
+              </ProjectContent>
+            </ProjectCard>
+          ))}
+        </ProjectsGrid>
       </Container>
 
       {/* Private Repository Modal */}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { ChevronDown, Download } from "lucide-react";
@@ -165,16 +165,13 @@ const Hero: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const texts = useMemo(
-    () => [
-      "Full-Stack Developer",
-      "Data Science Specialist",
-      "Machine Learning Enthusiast",
-      "Software Engineer",
-      "Problem Solver",
-    ],
-    []
-  );
+  const texts = [
+    "Full-Stack Developer",
+    "Data Science Specialist",
+    "Machine Learning Enthusiast",
+    "Software Engineer",
+    "Problem Solver",
+  ];
 
   useEffect(() => {
     const typeSpeed = isDeleting ? 50 : 100;
